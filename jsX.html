@@ -7,15 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>前端框架js库</h1>
+    <h1>Jsx </h1>
     <div id="test"></div>
-
+    <div id="test2"></div>
+    <h2>前端Js框架列表</h2>
+    <div id="test3"></div>
     <script src="./js/react.development.js"></script>
     <script src="./js/react-dom.development.js"></script>
     <script src="./js/babel.min.js"></script>
     <script type="text/babel">
-        const names = ['jquery','react','vue']
         // 创建虚拟dom
+        let myId = 'abc'
+        let myName = 'tom'
+        let text = 'js'
+        const vDOM = React.createElement('h3',{id:myId,name:myName},text)
+        // 渲染虚拟dom
+        ReactDOM.render(vDOM,document.getElementById('test'))
+        // 创建虚拟dom
+        let text2 = 'jsx'
+        const vDOM2 = <h3 id={myId}name={myName}>{text2.toUpperCase()}</h3>
+        // 渲染虚拟dom
+        ReactDOM.render(vDOM2,document.getElementById('test2'))//插入前：根据虚拟dom生成真实dom
+        
+        const names = ['jquery','react','vue']
         const ul = (
             <ul>
                 {
@@ -23,9 +37,8 @@
                 }
             </ul>
         )
-        // 渲染虚拟dom
-        ReactDOM.render(ul,document.getElementById('test'))
-        
+
+        ReactDOM.render(ul,document.getElementById('test3'))
     </script>
 </body>
 </html>
