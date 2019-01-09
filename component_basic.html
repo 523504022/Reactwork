@@ -7,13 +7,31 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="test"></div>
+    <div id="test2"></div>
     <script src="./js/react.development.js"></script>
     <script src="./js/react-dom.development.js"></script>
     <script src="./js/babel.min.js"></script>
     <script type="text/babel">
-        
-
-        
-    </script>
+        // 定义组件
+        // 方法1：工厂函数组件（简单组件）
+        function MyComponent() {
+            return <h2>工厂函数组件</h2>
+        }
+        // 渲染组件标签
+        ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+        // 方法2：ES6类组件（复杂组件）
+        const names = ["lc","pz","jy"]
+        class MyComponent2 extends React.Component{
+            render(){
+                return (
+                    <ul>
+                        {names.map((name,index) => <li key={index}>{name.toUpperCase()}</li>)}
+                    </ul>
+                )
+            }
+        }
+        ReactDOM.render(<MyComponent2/>,document.getElementById('test2'))
+    </script> 
 </body>
 </html>
