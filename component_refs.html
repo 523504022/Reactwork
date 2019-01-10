@@ -17,6 +17,7 @@
         class Mycomponent extends React.Component{
             idea = () => {
                 alert(this.refs.left.value)
+                alert(this.refs.right.value)
             }  
 
             render(){
@@ -24,7 +25,7 @@
                     <div>
                         <input type='text' ref='left'/>
                         <button onClick = {this.idea}>提示</button>
-                        <input type='text'/>
+                        <input type='text' ref='right'/>
                     </div>
                 )
             }
