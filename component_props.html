@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/prop-types.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script type='text/babel'>
+        class Person extends React.Component{
+            // 给组件类对象添加属性
+            static propTypes = {
+                name:PropTypes.string.isRequired,
+                age:PropTypes.number,
+                sex:PropTypes.string
+            }
+            // 属性的默认值
+            static defaultProps = {
+                age:18,
+                sex:'男'
+            }
+            
+            render(){
+                // 取出所有标签属性数据
+                let {name,sex,age} = this.props
+                return (
+                    <ul>
+                        <li>姓名：{name}</li>
+                        <li>性别：{sex}</li>
+                        <li>年龄: {age}</li>
+                    </ul>
+                )
+            }
+        }
+        let p1 = {
+                name: 'Jack',
+                sex: '女',
+                age: 17
+            }
+
+        ReactDOM.render(<Person name={p1.name}/>,document.getElementById('test'))
+    </script>
+</body>
+</html>

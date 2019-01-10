@@ -16,12 +16,16 @@
     <script src="./js/babel.min.js"></script>
     <script type="text/babel">
         class Like extends React.Component{
-            constructor(props){
-                super(props)
-                this.state = {
-                    isLikeMe:true
-                }
+            // constructor(props){
+            //     super(props)
+            //     this.state = {
+            //         isLikeMe:true
+            //     }
+            // }
+            state = {
+                isLikeMe:true
             }
+            
             handleClick = () => {
                 let isLikeMe = !this.state.isLikeMe
                 this.setState({
