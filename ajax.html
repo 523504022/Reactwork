@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+    
+    <script src="./js/react.development.js"></script>
+    <script src="./js/react-dom.development.js"></script>
+    <script src="./js/prop-types.js"></script>
+    <script src="./js/babel.min.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.18.0/axios.min.js"></script>
+    <script type='text/babel'>
+        class MostStarRepo extends React.Component{
+            static propTypes = {
+                searchName:PropTypes.string.isRequired
+            }
+            state = {
+                repoName:'',
+                repoUrl:''
+            }
+            componentDidMount(){
+                const url = `https://api.github.com/search/repositories?q=${this.props.searchName}&sort=stars`
+                axios.get(url)
+                    .then((response) => {
+                        const result = response.data
+                        const repo = result.items[0]
+                        const {name,html_url} = repo
+                        this.setState({
+                            repoName:name,
+                            repoUrl:html_url
+                        })
+                    })
+                    .catch(function (error){
+                        alert('请求出错')
+                    })
+            }
+            render(){
+                const {repoUrl,repoName} = this.state
+                if(repoName){
+                    return (
+                    <div>
+                        <h2>most star repo is <a href={repoUrl}>{repoName}</a></h2>
+                    </div>
+                    )
+                } else {
+                    return (
+                        <h2>Londing...</h2>
+                    )
+                }
+                
+            }
+        }
+        const searchName = 'v'
+        ReactDOM.render(<MostStarRepo searchName={searchName}/>,document.getElementById('test'))
+    </script>
+</body>
+</html>
