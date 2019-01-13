@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {NavLink,Route,Switch} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 
 import About from './views/about'
 import Home from './views/home'
+import MyNavLink from './components/my-nav-link'
 export default class App extends Component {
   render() {
     return (
@@ -17,8 +18,8 @@ export default class App extends Component {
           <div className="col-xs-2 col-xs-offset-2">
             <div className="list-group">
               {/*定义路由链接*/}
-              <NavLink className='list-group-item' to='/about'>About</NavLink>
-              <NavLink className='list-group-item' to='/home'>Home</NavLink>
+              <MyNavLink to='/about'>About</MyNavLink>
+              <MyNavLink to='/home'>Home</MyNavLink>
             </div>
           </div>
 
@@ -29,6 +30,7 @@ export default class App extends Component {
                 <Switch>
                   <Route path='/about' component={About}/>
                   <Route path='/home' component={Home}/>
+                  <Redirect to='/about'/>
                 </Switch>
               </div>
             </div>
